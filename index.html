@@ -4,7 +4,7 @@
     <title>Practicing Vue</title>
 
     <style>
-        .color-red { color: red; }
+        .is-loading { background: red; }
     </style>
 
     </head>
@@ -12,15 +12,7 @@
     
         <div id="root">
 
-            <h1 :class="className">Hellow World</h1>
-
-            <ul>
-                <li v-for="name in names" v-text="name"></li>
-            </ul>
-
-            <input id="input" type="text" v-model="newName">
-
-            <button v-on:click="addName">Add Name</button>
+            <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Click Me</button>
         </div>
 
     <!-- THIS IS THE VUE.JS CDN SCRIPT -->
@@ -32,23 +24,18 @@
                 el: '#root',
 
                 data: {
-                    newName: '',
-
-                    names: ['Joe', 'Mary', 'Jane', 'Jack'],
-
-                    className: 'color-red'
+                    isLoading: false
                 },
 
                 methods: {
-                    addName() {
-                        this.names.push(this.newName);
-                        this.newName = '';
+                    toggleClass() {
+                        this.isLoading = true;
                     }
                 },
 
-                mounted() {
-                    alert('ready');
-                }
+                // mounted() {
+                //     alert('ready');
+                // }
 
             });
 

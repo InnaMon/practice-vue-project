@@ -7,8 +7,12 @@
     
         <div id="root">
             <ul>
-                <li v-for="name in names">{{ name }}</li>
+                <li v-for="name in names" v-text="name"></li>
             </ul>
+
+            <input id="input" type="text" v-model="newName">
+
+            <button v-on:click="addName">Add Name</button>
         </div>
 
     <!-- THIS IS THE VUE.JS CDN SCRIPT -->
@@ -16,23 +20,27 @@
 
         <script>
 
-            // let data = {
-
-            //     message: 'Mama Mia'
-
-            // };
-
-            // let input = document.querySelector('#input');
-            // input.value = data.message;
-
             new Vue({
                 el: '#root',
 
                 data: {
+                    newName: '',
+
                     names: ['Joe', 'Mary', 'Jane', 'Jack']
+                },
+
+                methods: {
+                    addName() {
+                        this.names.push(this.newName);
+                        this.newName = '';
+                    }
+                },
+
+                mounted() {
+                    alert('ready');
                 }
 
-            })
+            });
 
             Vue.config.debug = true; 
             Vue.config.devtools = true;

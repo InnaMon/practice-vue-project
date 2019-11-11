@@ -1,68 +1,69 @@
-//abouve code creates a global component 
-
-//descibes what a task list outputs 
-
-Vue.component('task-list', {
-
-    template: `<div>
-                    <task v-for="task in tasks">{{ task.task }}</task>
-                </div>`,
-
-    data() {
-        return {
-            tasks: [
-                { task: 'Go to the store', complete: false},
-                { task: 'Go to the bank', complete: false},
-                { task: 'Go to work', complete: true}
-            ]
-        }
-    }
-
-});
-
-//describes what a task outputs 
-
-Vue.component('task', {
-
-    template: '<li><slot></slot></li>'
-
-});
-
-Vue.component('message', {
-    props: ['title', 'body'],
-
-    data() {
-        return {
-            isVisible: true
-        }
-    },
-
+Vue.component('tabs', {
     template: `
-        <article class="message" v-show="isVisible">
+    <div>
 
-            <div class="message-header">
-                <p>{{ title }}</p>
-                <button class="delete" aria-label="delete" 
-                @click="hideMessage"></button>
-            </div>
+        <div class="tabs">
+            <ul>
+                <li v-for="tab in tabs" :class="{ 'is-active': tab.isActive }">
+                    <a :href="tab.href" @click="selectTab(tab)">{{ tab.name }}</a>
+                </li>
+            </ul>
+        </div>
 
-            <div class="message-body">
-                {{ body }}
-            </div>
+        <div class="tabs-details">
+            <slot></slot>
+        </div>
 
-        </article>
+    </div>
+    
     `,
 
+    data() {
+        return { tabs: [] }
+    },
+
+    created() {
+        this.tabs = this.$children;
+    },
+
     methods: {
-        hideMessage() {
-            this.isVisible = false;
+        selectTab(selectedTab) {
+            this.tabs.forEach(tab => {
+                tab.isActive = (tab.name == selectedTab.name);
+            })
         }
     }
 })
 
+Vue.component('tab', {
+    template: `
+        <div v-show="isActive"><slot></slot></div>
+    `,
+    
+    props: {
+        name: {required: true},
 
+        selected: { defualt: false }
+    },
 
+    data() {
+        return {isActive: false}
+    },
+
+    computed: {
+        href() {
+            return '#' + this.name.toLowerCase().replace(/ /g, '-');
+        }
+    },
+
+    mounted() {
+        this.isActive = this.selected;
+    }
+});
 
 new Vue({
     el: '#root'
 })
+
+Vue.config.debug = true; 
+Vue.config.devtools = true;

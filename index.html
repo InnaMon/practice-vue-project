@@ -3,16 +3,22 @@
     <head>
     <title>Practicing Vue</title>
 
-    <style>
-        .is-loading { background: red; }
-    </style>
-
     </head>
     <body>
     
         <div id="root">
+            <h2>All Tasks</h2>
 
-            <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Click Me</button>
+            <ul>
+                <li v-for="task in tasks" v-text="task.description"></li>
+            </ul>
+
+            <h2>Completed Tasks</h2>
+
+            <ul>
+                <li v-for="task in incompleteTasks" v-text="task.description"></li>
+            </ul>
+
         </div>
 
     <!-- THIS IS THE VUE.JS CDN SCRIPT -->
@@ -24,14 +30,22 @@
                 el: '#root',
 
                 data: {
-                    isLoading: false
+                    tasks: [
+                        { description: 'task to be completed 1', completed: false },
+                        { description: 'task to be completed 2', completed: false },
+                        { description: 'task to be completed 3',  completed: true },
+                        { description: 'task to be completed 4', completed: false },
+                        { description: 'task to be completed 5', completed: false },
+                        { description: 'task to be completed 6', completed: true },
+                        { description: 'task to be completed 7', completed: true }
+                    ]
                 },
 
-                methods: {
-                    toggleClass() {
-                        this.isLoading = true;
+                computed: {
+                    incompleteTasks() {
+                        return this.tasks.filter(task => task.completed);
                     }
-                },
+                }
 
                 // mounted() {
                 //     alert('ready');

@@ -4,25 +4,39 @@
     <title>Practicing Vue</title>
     </head>
     <body>
+    
+        <div id="root">
+            <input type="text" id="input" v-model="message">
 
-    <input type="text" id="input">
+            <p>The value of the input is: {{ message }}.</p>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- THIS IS THE VUE.JS CDN SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 
-    <script>
+        <script>
 
-        let data = {
+            // let data = {
 
-            message: 'Hello World!'
+            //     message: 'Mama Mia'
 
-        };
+            // };
 
-        let input = document.querySelector('#input');
-        input.value = data.message;
+            // let input = document.querySelector('#input');
+            // input.value = data.message;
+
+            new Vue({
+                el: '#root',
+
+                data: {
+                    message: 'Hello World'
+                }
+
+            })
 
 
 
-    </script>
+        </script>
 
     </body>
 </html>

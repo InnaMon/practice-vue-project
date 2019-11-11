@@ -5,10 +5,24 @@
     </head>
     <body>
 
-    <h1>This is a Heading</h1>
-    <p>This is a paragraph.</p>
+    <input type="text" id="input">
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    
+
+    <script>
+
+        let data = {
+
+            message: 'Hello World!'
+
+        };
+
+        let input = document.querySelector('#input');
+        input.value = data.message;
+
+
+
+    </script>
+
     </body>
 </html>

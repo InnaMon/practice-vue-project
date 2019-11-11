@@ -2,10 +2,18 @@
 <html>
     <head>
     <title>Practicing Vue</title>
+
+    <style>
+        .color-red { color: red; }
+    </style>
+
     </head>
     <body>
     
         <div id="root">
+
+            <h1 :class="className">Hellow World</h1>
+
             <ul>
                 <li v-for="name in names" v-text="name"></li>
             </ul>
@@ -26,7 +34,9 @@
                 data: {
                     newName: '',
 
-                    names: ['Joe', 'Mary', 'Jane', 'Jack']
+                    names: ['Joe', 'Mary', 'Jane', 'Jack'],
+
+                    className: 'color-red'
                 },
 
                 methods: {

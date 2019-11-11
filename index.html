@@ -6,9 +6,9 @@
     <body>
     
         <div id="root">
-            <input type="text" id="input" v-model="message">
-
-            <p>The value of the input is: {{ message }}.</p>
+            <ul>
+                <li v-for="name in names">{{ name }}</li>
+            </ul>
         </div>
 
     <!-- THIS IS THE VUE.JS CDN SCRIPT -->
@@ -29,7 +29,7 @@
                 el: '#root',
 
                 data: {
-                    message: 'Hello World'
+                    names: ['Joe', 'Mary', 'Jane', 'Jack']
                 }
 
             })

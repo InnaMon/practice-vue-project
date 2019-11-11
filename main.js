@@ -1,9 +1,13 @@
+//shared event instance that allows for sibling componenets to communicte
+
+window.Event = new Vue(); 
+
 Vue.component('coupon', {
     template: '<input placeholder="Enter your coupon code" @blur="couponApplied">',
 
     methods: {
         couponApplied() {
-            this.$emit('applied');
+            Event.$emit('applied');
         }
     }
 })
@@ -15,10 +19,8 @@ new Vue({
         couponApplied: false
     },
 
-    methods: {
-        onCouponApplied() {
-            this.couponApplied = true;
-        }
+    created() {
+        Event.$on('applied', () => alert('Handling it!'));
     }
 });
 

@@ -13,17 +13,14 @@
     
         <div id="root" class="container">
 
-            <modal>
-
-                <template slot="header">My Title</template>
-                <template slot="body">My body content</template>
-
-                <div slot="footer">
-                    <button class="button is-success">Save changes</button>
-                    <button class="button">Cancel</button>
+            <progress-view inline-template>
+                <div>
+                    <h1>Progress through this course: {{ completionRate }}%</h1>
+                
+                    <p><button @click="completionRate += 1">Update</button></p>
                 </div>
 
-            </modal>
+            </progress-view>
 
         </div>
 

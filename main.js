@@ -1,27 +1,36 @@
-//shared event instance that allows for sibling componenets to communicte
+Vue.component('modal', {
+    template: `
+    <div class="modal is-active">
 
-window.Event = new Vue(); 
+        <div class="modal-background"></div>
 
-Vue.component('coupon', {
-    template: '<input placeholder="Enter your coupon code" @blur="couponApplied">',
+        <div class="modal-card">
+            <header class="modal-card-head">
+            <p class="modal-card-title">
+            
+                <slot name="header"></slot>
+            
+            </p>
+            <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                
+                <slot name="body"></slot>    
+            
+            </section>
+            <footer class="modal-card-foot">
 
-    methods: {
-        couponApplied() {
-            Event.$emit('applied');
-        }
-    }
+                <slot name="footer"></slot>
+            
+            </footer>
+        </div>
+
+    </div>
+    `
 })
 
 new Vue({
-    el: '#root',
-
-    data: {
-        couponApplied: false
-    },
-
-    created() {
-        Event.$on('applied', () => alert('Handling it!'));
-    }
+    el: '#root'
 });
 
 Vue.config.debug = true; 

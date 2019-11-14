@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Message>Hello There</Message>
+    <Counter></Counter>
   </div>
 </template>
 
 <script>
-import Message from './components/Message.vue';
+import Counter from './components/Counter.vue';
 
 export default {
   name: 'app',
   components: {
-    Message,
+    Counter,
   },
 };
 </script>
@@ -26,6 +25,3 @@ export default {
   margin-top: 60px;
 }
 </style>
-
-
-
